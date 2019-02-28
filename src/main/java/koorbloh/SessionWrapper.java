@@ -32,7 +32,7 @@ public class SessionWrapper {
     }
 
     private void checkAuthentication(Class<? extends KMessage> messageType, String message) throws Exception {
-        if (!messageType.equals(AuthenticateMessage.class.getSimpleName()) && !authenticationManager.isAuthenticated(session)) {
+        if (!messageType.equals(AuthenticateMessage.class) && !authenticationManager.isAuthenticated(session)) {
             throw new Exception("Session not authenticated");
         }
     }

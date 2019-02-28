@@ -16,8 +16,8 @@ public class KoorblohWebsocketServer {
     static final Logger LOG = LoggerFactory.getLogger(KoorblohWebsocketServer.class);
 
     SessionManager sessionManager = SessionManager.getInstance();
+    MessageTypeDatabase messageTypeDatabase = MessageTypeDatabase.getInstance();
 
-    Map<String, Class<? extends KMessage>> messageTypeMap = new HashMap<>();
 
     @OnOpen
     public void open(Session session) {
@@ -52,7 +52,7 @@ public class KoorblohWebsocketServer {
                 throw new Exception("unable to parse message, improper format");
             }
 
-            final Class<? extends KMessage> messageType = messageTypeMap.getOrDefault(messageParts[0], RebroadcastMessage.class);
+            final Class<? extends KMessage> messageType = messageTypeDatabase.getMessageTypeFromString(messageParts[0]);
             final String fullMessage = messageParts[1];
 
             sessionManager

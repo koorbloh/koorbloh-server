@@ -8,6 +8,12 @@ public class AuthenticateMessage extends KMessage {
     public final String userId;
     public final String passKey;
 
+    @Deprecated //jackson
+    public AuthenticateMessage() {
+        userId = "";
+        passKey = "";
+    }
+
     public AuthenticateMessage(String userId, String passKey) {
         this.userId = userId;
         this.passKey = passKey;
